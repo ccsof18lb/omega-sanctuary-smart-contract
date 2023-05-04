@@ -8,7 +8,6 @@ contract OmegaSanctuaryV1 {
     struct Character {
         uint256 userId;
         address characterAddress;
-        uint256 characterUniqueId;
         uint256 experienceInMega;
         CharacterType characterType;
         uint256 hp;
@@ -18,10 +17,16 @@ contract OmegaSanctuaryV1 {
         uint256 maxLevel;
         uint256 currentLadder; // max 5
         Armory armory;
+        SpecialEffect[] specialEffects;
+    }
+
+    struct SpecialEffect {
+        string effect; // must fit the defined strings
+        int256 upOrdown;
     }
 
     struct Weapon {
-        bool isCommon; // true: 0; false: +1
+        bool isCommon; // true: 0; false: n < 8
         address nftWeapon;
         uint256 addAttack;
         uint256 addDefense;
@@ -35,11 +40,8 @@ contract OmegaSanctuaryV1 {
     }
 
     struct CharacterType { // CAN MIX AT MOST THREE
-        bool wind;
-        bool fire;
-        bool water;
-        bool soil;
-        bool air;
+        string elementalType; // wind air fire water soil
+        // mix with ;
     }
     // End For Characters
 
@@ -49,6 +51,7 @@ contract OmegaSanctuaryV1 {
         address userAddress;
         string userName;
         string intro;
+        Character[] characters;
         uint256 victory;
         uint256 defeat;
         uint256 totalCharacters;
@@ -60,19 +63,11 @@ contract OmegaSanctuaryV1 {
     // Begin For Game Scenes
     struct Orientation { //ONLY ONE TRUE
         // static scene
-        bool center; 
-        bool east;
-        bool west;
-        bool north;
-        bool south;
-        bool outside;
+        string orientation; // center east west north south outside
     }
 
     struct Level { // ONLY ONE TRUE
-        bool low;
-        bool medium;
-        bool high;
-        bool extra;
+        string difficulty; // low high medium extra
     }
 
     struct NPCOpponents {

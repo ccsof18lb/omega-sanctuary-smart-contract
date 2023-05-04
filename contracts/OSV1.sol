@@ -1,7 +1,10 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 
+// no protagonist, at least no defined ones ...
+
 contract OmegaSanctuaryV1 {
+    // Begin For Characters
     struct Character {
         uint256 userId;
         address characterAddress;
@@ -13,16 +16,32 @@ contract OmegaSanctuaryV1 {
         uint256 attack;
         uint256 level;
         uint256 maxLevel;
-        uint256 currentStage;
+        uint256 currentLadder; // max 5
+        Armory armory;
     }
 
-    struct CharacterType { // AMT1
-        bool wind; // 1
-        bool fire; // 2
-        bool water; // 3
-        bool soil; // 0
-        bool air; // 4
+    struct Weapon {
+        bool isCommon; // true: 0; false: +1
+        address nftWeapon;
+        uint256 addAttack;
+        uint256 addDefense;
+        uint256 addRecovery;
+        uint256 rarityRanking; // max 7
     }
+
+    struct Armory {
+        uint256 maxItem;
+        Weapon[] weapons;
+    }
+
+    struct CharacterType { // CAN MIX AT MOST THREE
+        bool wind;
+        bool fire;
+        bool water;
+        bool soil;
+        bool air;
+    }
+    // End For Characters
 
     struct User {
         uint256 userId;
@@ -32,12 +51,13 @@ contract OmegaSanctuaryV1 {
         uint256 victory;
         uint256 defeat;
         uint256 totalCharacters;
-        uint256 characterLimit; // $ 
-        uint256 followers; // $
+        uint256 characterLimit;
+        uint256 followers;
     }
 
     struct Orientation { //ONLY ONE TRUE
-        bool center; // static scene
+        // static scene
+        bool center; 
         bool east;
         bool west;
         bool north;
@@ -45,7 +65,7 @@ contract OmegaSanctuaryV1 {
         bool outside;
     }
 
-    struct Level { // OOT
+    struct Level { // ONLY ONE TRUE
         bool low;
         bool medium;
         bool high;

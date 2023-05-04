@@ -43,6 +43,7 @@ contract OmegaSanctuaryV1 {
     }
     // End For Characters
 
+    // Begin For Users
     struct User {
         uint256 userId;
         address userAddress;
@@ -54,7 +55,9 @@ contract OmegaSanctuaryV1 {
         uint256 characterLimit;
         uint256 followers;
     }
+    // End For Users
 
+    // Begin For Game Scenes
     struct Orientation { //ONLY ONE TRUE
         // static scene
         bool center; 
@@ -69,15 +72,25 @@ contract OmegaSanctuaryV1 {
         bool low;
         bool medium;
         bool high;
+        bool extra;
     }
 
     struct NPCOpponents {
         uint256 index;
         address nftAsNPC;
+        uint256 hp;
+        uint256 defense;
+        uint256 attack;
+        uint256 level; // big boss: level 12
+    }
+
+    struct Mission {
+        uint256 missionId;
     }
 
     struct Territory {
         Orientation orientation;
         Level difficulty;
     }
+    // End For Game Scenes
 }

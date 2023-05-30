@@ -2,6 +2,7 @@
 pragma solidity ^0.8.9;
 
 // no protagonist, at least no defined ones ...
+// move too fast sync too slow
 
 contract OmegaSanctuaryV1 {
     // Begin For Characters
